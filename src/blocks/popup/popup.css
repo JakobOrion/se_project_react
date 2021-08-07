@@ -1,0 +1,23 @@
+@import url('./__container/popup__container.css');
+@import url('./__container/_figure/popup__container_figure.css');
+@import url('./__figure/popup__figure.css');
+@import url('./__image/popup__image.css');
+@import url('./__image-title/popup__image-title.css');
+@import url('./__close/popup__close.css');
+@import url('./__title/popup__title.css');
+
+
+.popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .2s, opacity .2s ease-in-out;
+}

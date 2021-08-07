@@ -1,0 +1,20 @@
+.photo-card__heart {
+  width: 25px;
+  height: 20px;
+  background-color: #fff;
+  background-image: url('../../../images/heart.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0px;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+  cursor: pointer;
+}
+
+.photo-card__heart:hover {
+  opacity: .6;
+}
+
+.photo-card__heart:focus {
+  outline: none;
+}
