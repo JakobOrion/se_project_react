@@ -8,7 +8,7 @@ function EditAvatarPopup(props) {
   const [isValid, setIsValid] = useState(false);
 
   function checkIsFormValid() {
-    if (isError.avatar !== '' || userAvatarRef.current.value == '') {
+    if (isError.avatar !== '' || userAvatarRef.current.value === '') {
       setIsValid(false);
     } else {
       setIsValid(true);

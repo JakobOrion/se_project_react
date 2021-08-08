@@ -16,7 +16,7 @@ function EditProfilePopup(props) {
 
 
   function checkIsFormValid() {
-    if (isError.name !== '' || isError.about !== ''|| inputs.name == '' || inputs.about == '') {
+    if (isError.name !== '' || isError.about !== ''|| inputs.name === '' || inputs.about === '') {
       setIsValid(false);
     } else {
       setIsValid(true);

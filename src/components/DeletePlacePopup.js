@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function DeletePlacePopup(props) {
   const { card, isOpen, isLoading, onClose, onConfirmDelete } = props;
-  const [isValid, setIsValid] = useState(true);
 
   function handleConfirmSubmit(e) {
     e.preventDefault();
@@ -16,7 +14,7 @@ function DeletePlacePopup(props) {
     title="Are you sure?"
     buttonText="Yes"
     isOpen={isOpen}
-    isValid={isValid}
+    isValid={true}
     isLoading={isLoading}
     onClose={onClose}
     onSubmit={handleConfirmSubmit}

@@ -8,7 +8,7 @@ function AddPlacePopup(props) {
   const [isValid, setIsValid] = useState(false);
 
   function checkIsFormValid() {
-    if (isError.name !== '' || isError.link !== ''|| inputs.name == '' || inputs.link == '') {
+    if (isError.name !== '' || isError.link !== ''|| inputs.name === '' || inputs.link === '') {
       setIsValid(false);
     } else {
       setIsValid(true);
