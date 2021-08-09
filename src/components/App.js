@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 import headerLogo from '../images/around_us_logo.svg';
@@ -10,7 +11,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
-import useKey from '../hooks/useKey';
+import useKeyPress from '../hooks/useKeyPress';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cardList, setCardList] = useState([]);
-  const isEscapePress = useKey('Escape');
+  const isEscapePress = useKeyPress('Escape');
 
   useEffect(() => {
     api
@@ -155,56 +156,58 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <div className="page__container">
-          <Header logo={headerLogo} />
+        <Route path="/">
+          <div className="page__container">
+            <Header logo={headerLogo} />
 
-          <Main
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            cards={cardList}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onDeleteClick={handleDeleteClick}
+            <Main
+              onEditAvatar={handleEditAvatarClick}
+              onEditProfile={handleEditProfileClick}
+              cards={cardList}
+              onAddPlace={handleAddPlaceClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onDeleteClick={handleDeleteClick}
+            />
+
+            <Footer />
+          </div>
+
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            isLoading={isLoading}
+            onClose={handleClosePopups}
+            onUpdateAvatar={handleUpdateAvatar}
           />
 
-          <Footer />
-        </div>
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            isLoading={isLoading}
+            onClose={handleClosePopups}
+            onUpdateUser={handleUpdateUser}
+          />
 
-        <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen}
-          isLoading={isLoading}
-          onClose={handleClosePopups}
-          onUpdateAvatar={handleUpdateAvatar}
-        />
+          <AddPlacePopup
+            isOpen={isAddPlacePopupOpen}
+            isLoading={isLoading}
+            onClose={handleClosePopups}
+            onAddPlace={handleAddNewPlace}
+          />
 
-        <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
-          isLoading={isLoading}
-          onClose={handleClosePopups}
-          onUpdateUser={handleUpdateUser}
-        />
+          <DeletePlacePopup
+            card={selectedCard}
+            isOpen={isDeletePlacePopupOpen}
+            isLoading={isLoading}
+            onClose={handleClosePopups}
+            onConfirmDelete={handleDeletePlace}
+          />
 
-        <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
-          isLoading={isLoading}
-          onClose={handleClosePopups}
-          onAddPlace={handleAddNewPlace}
-        />
-
-        <DeletePlacePopup
-          card={selectedCard}
-          isOpen={isDeletePlacePopupOpen}
-          isLoading={isLoading}
-          onClose={handleClosePopups}
-          onConfirmDelete={handleDeletePlace}
-        />
-
-        <ImagePopup
-          card={selectedCard}
-          isOpen={isImagePopupOpen}
-          onClose={handleClosePopups}
-        />
+          <ImagePopup
+            card={selectedCard}
+            isOpen={isImagePopupOpen}
+            onClose={handleClosePopups}
+          />
+        </Route>
       </div>
     </CurrentUserContext.Provider>
   );
