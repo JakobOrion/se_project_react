@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 import headerLogo from '../images/around_us_logo.svg';
@@ -156,7 +156,14 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Route path="/">
+        <Switch>
+        <Route path='/signin'>
+          <h1>Login</h1>
+        </Route>
+        <Route path='/signup'>
+          <h1>Register</h1>
+        </Route>
+        <Route path='/'>
           <div className="page__container">
             <Header logo={headerLogo} />
 
@@ -208,6 +215,7 @@ function App() {
             onClose={handleClosePopups}
           />
         </Route>
+        </Switch>
       </div>
     </CurrentUserContext.Provider>
   );
