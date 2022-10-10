@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import { api } from '../utils/api'
+import api from '../utils/api'
 import headerLogo from '../images/around_us_logo.svg'
 import Header from './Header'
 import Main from './Main'
@@ -27,14 +28,23 @@ function App() {
 
     useEffect(() => {
         api.getAppInfo()
-            .then(([userInfo, cardList]) => {
+            .then(([userInfo, currentCardList]) => {
                 setCurrentUser(userInfo)
-                setCardList(cardList)
+                setCardList(currentCardList)
             })
             .catch((err) => {
                 console.log(err)
             })
     }, [])
+
+    function closeAllPopups() {
+        setIsEditAvatarPopupOpen(false)
+        setIsEditProfilePopupOpen(false)
+        setIsAddPlacePopupOpen(false)
+        setIsDeletePlacePopupOpen(false)
+        setIsImagePopupOpen(false)
+        setIsLoading(false)
+    }
 
     useEffect(() => {
         closeAllPopups()
@@ -136,15 +146,6 @@ function App() {
             !e.target.closest('.popup__container')
         )
             closeAllPopups()
-    }
-
-    function closeAllPopups() {
-        setIsEditAvatarPopupOpen(false)
-        setIsEditProfilePopupOpen(false)
-        setIsAddPlacePopupOpen(false)
-        setIsDeletePlacePopupOpen(false)
-        setIsImagePopupOpen(false)
-        setIsLoading(false)
     }
 
     return (
