@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl
@@ -6,34 +7,38 @@ class Api {
 
     // load user info from server
     getUserInfo() {
-        return fetch(this._baseUrl + '/users/me', {
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
     // load cards from server
     getCardList() {
-        return fetch(this._baseUrl + '/cards', {
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
-    //Wait for the getCardList and getUserInfo before rendering
+    // Wait for the getCardList and getUserInfo before rendering
     getAppInfo() {
         return Promise.all([this.getUserInfo(), this.getCardList()])
     }
 
     // edit profile
     setUserInfo({ name, about }) {
-        return fetch(this._baseUrl + '/users/me', {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -42,14 +47,16 @@ class Api {
             }),
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
     // add new card
     addCard({ name, link }) {
-        return fetch(this._baseUrl + '/cards', {
+        return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -58,43 +65,51 @@ class Api {
             }),
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
     // delete a card
     removeCard(cardID) {
-        return fetch(this._baseUrl + '/cards/' + cardID, {
+        return fetch(`${this._baseUrl}/cards/${cardID}`, {
             method: 'DELETE',
             headers: this._headers,
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
     // add like
     addLike(cardID) {
-        return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
             method: 'PUT',
             headers: this._headers,
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 
     // remove like
     removeLike(cardID) {
-        return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
             method: 'DELETE',
             headers: this._headers,
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject('Error!' + res.statusText)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
@@ -105,7 +120,7 @@ class Api {
 
     // update profile pic
     setProfilePicture(avatar) {
-        return fetch(this._baseUrl + '/users/me/avatar', {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -113,17 +128,21 @@ class Api {
             }),
         })
             .then((res) =>
-                res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`)
+                res.ok
+                    ? res.json()
+                    : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
             .catch((err) => console.log(err))
     }
 }
 
 // API instance
-export const api = new Api({
+const api = new Api({
     baseUrl: 'https://around.nomoreparties.co/v1/group-7',
     headers: {
         authorization: '7c54637c-526f-4047-8439-3339585d598e',
         'Content-Type': 'application/json',
     },
 })
+
+export default api
