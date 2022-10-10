@@ -1,34 +1,34 @@
 .profile__edit {
-  padding: 0;
-  margin: 0 0 0 27px;
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  background-color: #000;
-  background-image: url('../../../images/edit.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 1px solid #fff;
-  box-sizing: border-box;
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
-  cursor: pointer;
+    padding: 0;
+    margin: 0 0 0 27px;
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    background-color: #000;
+    background-image: url('../../../images/edit.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .profile__edit:hover {
-  opacity: .6;
+    opacity: 0.6;
 }
 
 .profile__edit:focus {
-  outline: none;
+    outline: none;
 }
 
 @media screen and (max-width: 636px) {
-  .profile__edit {
-    width: 18px;
-    height: 18px;
-    background-size: 7px;
-    margin-left: 12px;
-    margin-bottom: -1px;
-  }
+    .profile__edit {
+        width: 18px;
+        height: 18px;
+        background-size: 7px;
+        margin-left: 12px;
+        margin-bottom: -1px;
+    }
 }

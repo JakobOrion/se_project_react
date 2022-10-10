@@ -1,7 +1,7 @@
 @import url('./__container/page__container.css');
 
 .page {
-  background-color: #000;
-  min-height: 100vh;
-  overflow-x: hidden;
+    background-color: #000;
+    min-height: 100vh;
+    overflow-x: hidden;
 }

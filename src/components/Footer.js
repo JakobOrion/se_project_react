@@ -1,9 +1,9 @@
 function Footer() {
-  return (
-    <footer className="footer">
-      <p className="footer__copyright">© 2020 Around The U.S.</p>
-    </footer>
-  );
+    return (
+        <footer className="footer">
+            <p className="footer__copyright">© 2020 Around The U.S.</p>
+        </footer>
+    )
 }
 
-export default Footer;
+export default Footer

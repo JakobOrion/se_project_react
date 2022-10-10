@@ -7,9 +7,9 @@
 @import url('./__heart/_active/photo-card__heart_active.css');
 
 .photo-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
 }

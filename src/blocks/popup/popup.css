@@ -6,18 +6,17 @@
 @import url('./__close/popup__close.css');
 @import url('./__title/popup__title.css');
 
-
 .popup {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, .5);
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility .2s, opacity .2s ease-in-out;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s ease-in-out;
 }

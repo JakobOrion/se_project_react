@@ -1,22 +1,22 @@
 .photo-card__delete-button {
-  background-image: url(../../../images/trash.svg);
-  background-repeat: no-repeat;
-  width: 18px;
-  height: 20px;
-  background-color: transparent;
-  position: absolute;
-  border: none;
-  top: 18px;
-  right: 15px;
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
-  cursor: pointer;
+    background-image: url(../../../images/trash.svg);
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 20px;
+    background-color: transparent;
+    position: absolute;
+    border: none;
+    top: 18px;
+    right: 15px;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .photo-card__delete-button:hover {
-  opacity: .6;
+    opacity: 0.6;
 }
 
 .photo-card__delete-button:focus {
-  outline: none;
+    outline: none;
 }
