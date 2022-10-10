@@ -15,14 +15,14 @@ function EditAvatarPopup(props) {
         }
     }
 
-    function handlePaste(e) {
-        userAvatarRef.current.value = e.clipboardData.getData('text/plain')
-        handleChange(e)
-    }
-
     function handleChange(e) {
         setIsError({ ...isError, [e.target.name]: e.target.validationMessage })
         checkIsFormValid()
+    }
+
+    function handlePaste(e) {
+        userAvatarRef.current.value = e.clipboardData.getData('text/plain')
+        handleChange(e)
     }
 
     function handleAvatarSubmit(e) {

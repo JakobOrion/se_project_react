@@ -20,15 +20,15 @@ function AddPlacePopup(props) {
         }
     }
 
-    function handlePaste(e) {
-        e.target.value = e.clipboardData.getData('text/plain')
-        handleChange(e)
-    }
-
     function handleChange(e) {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
         setIsError({ ...isError, [e.target.name]: e.target.validationMessage })
         checkIsFormValid()
+    }
+
+    function handlePaste(e) {
+        e.target.value = e.clipboardData.getData('text/plain')
+        handleChange(e)
     }
 
     function handleAddPlaceSubmit(e) {
