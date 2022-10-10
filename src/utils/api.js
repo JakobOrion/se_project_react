@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl

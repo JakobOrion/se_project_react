@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 import { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import CurrentUserContext from '../contexts/CurrentUserContext'
 import api from '../utils/api'
 import headerLogo from '../images/around_us_logo.svg'
 import Header from './Header'
