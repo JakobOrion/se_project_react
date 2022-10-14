@@ -1,7 +1,7 @@
 class Api {
     constructor({ baseUrl, headers }) {
-        this._baseUrl = baseUrl
-        this._headers = headers
+        this._baseUrl = baseUrl;
+        this._headers = headers;
     }
 
     // load user info from server
@@ -14,7 +14,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // load cards from server
@@ -27,12 +27,12 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // Wait for the getCardList and getUserInfo before rendering
     getAppInfo() {
-        return Promise.all([this.getUserInfo(), this.getCardList()])
+        return Promise.all([this.getUserInfo(), this.getCardList()]);
     }
 
     // edit profile
@@ -50,7 +50,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // add new card
@@ -68,7 +68,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // delete a card
@@ -82,7 +82,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // add like
@@ -96,7 +96,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     // remove like
@@ -110,11 +110,11 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     changeLikeCardStatus(cardID, isLiked) {
-        return isLiked ? this.addLike(cardID) : this.removeLike(cardID)
+        return isLiked ? this.addLike(cardID) : this.removeLike(cardID);
     }
 
     // update profile pic
@@ -131,7 +131,7 @@ class Api {
                     ? res.json()
                     : Promise.reject(new Error(`Error! ${res.statusText}`))
             )
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 }
 
@@ -142,6 +142,6 @@ const api = new Api({
         authorization: '7c54637c-526f-4047-8439-3339585d598e',
         'Content-Type': 'application/json',
     },
-})
+});
 
-export default api
+export default api;

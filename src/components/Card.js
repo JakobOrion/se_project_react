@@ -1,23 +1,22 @@
-import { useContext } from 'react'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { useContext } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function Card(props) {
-    const { card, onCardClick, onCardLike, onDeleteClick } = props
-    const user = useContext(CurrentUserContext)
+function Card({ card, onCardClick, onCardLike, onDeleteClick }) {
+    const user = useContext(CurrentUserContext);
 
-    const isOwn = card.owner._id === user._id
-    const isLiked = card.likes.some((i) => i._id === user._id)
+    const isOwn = card.owner._id === user._id;
+    const isLiked = card.likes.some((i) => i._id === user._id);
 
     function handleClick() {
-        onCardClick(card)
+        onCardClick(card);
     }
 
     function handleLikeClick() {
-        onCardLike(card)
+        onCardLike(card);
     }
 
     function handleDeleteClick() {
-        onDeleteClick(card)
+        onDeleteClick(card);
     }
 
     return (
@@ -48,7 +47,7 @@ function Card(props) {
                 <div className="photo-card__likes">{card.likes.length}</div>
             </div>
         </li>
-    )
+    );
 }
 
-export default Card
+export default Card;

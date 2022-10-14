@@ -1,17 +1,16 @@
-import { useState, useEffect, useContext } from 'react'
-import PopupWithForm from './PopupWithForm'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { useState, useEffect, useContext } from 'react';
+import PopupWithForm from './PopupWithForm';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function EditProfilePopup(props) {
-    const { isOpen, isLoading, onClose, onUpdateUser } = props
-    const user = useContext(CurrentUserContext)
-    const [inputs, setInputs] = useState({})
-    const [isError, setIsError] = useState({})
-    const [isValid, setIsValid] = useState(true)
+function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
+    const user = useContext(CurrentUserContext);
+    const [inputs, setInputs] = useState({});
+    const [isError, setIsError] = useState({});
+    const [isValid, setIsValid] = useState(true);
 
     useEffect(() => {
-        setInputs({ name: user.name, about: user.about })
-    }, [user])
+        setInputs({ name: user.name, about: user.about });
+    }, [user]);
 
     function checkIsFormValid() {
         if (
@@ -20,29 +19,29 @@ function EditProfilePopup(props) {
             inputs.name === '' ||
             inputs.about === ''
         ) {
-            setIsValid(false)
+            setIsValid(false);
         } else {
-            setIsValid(true)
+            setIsValid(true);
         }
     }
 
     function handleChange(e) {
-        setInputs({ ...inputs, [e.target.name]: e.target.value })
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage })
-        checkIsFormValid()
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
+        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
+        checkIsFormValid();
     }
 
     function handlePaste(e) {
-        e.target.value = e.clipboardData.getData('text/plain')
-        handleChange(e)
+        e.target.value = e.clipboardData.getData('text/plain');
+        handleChange(e);
     }
 
     function handleProfileSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         onUpdateUser({
             name: inputs.name,
             about: inputs.about,
-        })
+        });
     }
 
     return (
@@ -106,7 +105,7 @@ function EditProfilePopup(props) {
                 {isError.about}
             </span>
         </PopupWithForm>
-    )
+    );
 }
 
-export default EditProfilePopup
+export default EditProfilePopup;

@@ -1,35 +1,34 @@
-import { useRef, useState } from 'react'
-import PopupWithForm from './PopupWithForm'
+import { useRef, useState } from 'react';
+import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup(props) {
-    const { isOpen, isLoading, onClose, onUpdateAvatar } = props
-    const userAvatarRef = useRef()
-    const [isError, setIsError] = useState({})
-    const [isValid, setIsValid] = useState(false)
+function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
+    const userAvatarRef = useRef();
+    const [isError, setIsError] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     function checkIsFormValid() {
         if (isError.avatar !== '' || userAvatarRef.current.value === '') {
-            setIsValid(false)
+            setIsValid(false);
         } else {
-            setIsValid(true)
+            setIsValid(true);
         }
     }
 
     function handleChange(e) {
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage })
-        checkIsFormValid()
+        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
+        checkIsFormValid();
     }
 
     function handlePaste(e) {
-        userAvatarRef.current.value = e.clipboardData.getData('text/plain')
-        handleChange(e)
+        userAvatarRef.current.value = e.clipboardData.getData('text/plain');
+        handleChange(e);
     }
 
     function handleAvatarSubmit(e) {
-        e.preventDefault()
-        onUpdateAvatar(userAvatarRef.current.value)
-        userAvatarRef.current.value = ''
-        setIsError({})
+        e.preventDefault();
+        onUpdateAvatar(userAvatarRef.current.value);
+        userAvatarRef.current.value = '';
+        setIsError({});
     }
 
     return (
@@ -67,7 +66,7 @@ function EditAvatarPopup(props) {
                 {isError.avatar}
             </span>
         </PopupWithForm>
-    )
+    );
 }
 
-export default EditAvatarPopup
+export default EditAvatarPopup;

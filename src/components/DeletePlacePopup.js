@@ -1,11 +1,15 @@
-import PopupWithForm from './PopupWithForm'
+import PopupWithForm from './PopupWithForm';
 
-function DeletePlacePopup(props) {
-    const { card, isOpen, isLoading, onClose, onConfirmDelete } = props
-
+function DeletePlacePopup({
+    card,
+    isOpen,
+    isLoading,
+    onClose,
+    onConfirmDelete,
+}) {
     function handleConfirmSubmit(e) {
-        e.preventDefault()
-        onConfirmDelete(card)
+        e.preventDefault();
+        onConfirmDelete(card);
     }
 
     return (
@@ -19,7 +23,7 @@ function DeletePlacePopup(props) {
             onClose={onClose}
             onSubmit={handleConfirmSubmit}
         />
-    )
+    );
 }
 
-export default DeletePlacePopup
+export default DeletePlacePopup;

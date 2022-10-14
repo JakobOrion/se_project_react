@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import PopupWithForm from './PopupWithForm'
+import { useState } from 'react';
+import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup(props) {
-    const { isOpen, isLoading, onClose, onAddPlace } = props
-    const [inputs, setInputs] = useState({})
-    const [isError, setIsError] = useState({})
-    const [isValid, setIsValid] = useState(false)
+function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
+    const [inputs, setInputs] = useState({});
+    const [isError, setIsError] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     function checkIsFormValid() {
         if (
@@ -14,31 +13,31 @@ function AddPlacePopup(props) {
             inputs.name === '' ||
             inputs.link === ''
         ) {
-            setIsValid(false)
+            setIsValid(false);
         } else {
-            setIsValid(true)
+            setIsValid(true);
         }
     }
 
     function handleChange(e) {
-        setInputs({ ...inputs, [e.target.name]: e.target.value })
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage })
-        checkIsFormValid()
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
+        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
+        checkIsFormValid();
     }
 
     function handlePaste(e) {
-        e.target.value = e.clipboardData.getData('text/plain')
-        handleChange(e)
+        e.target.value = e.clipboardData.getData('text/plain');
+        handleChange(e);
     }
 
     function handleAddPlaceSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         onAddPlace({
             name: inputs.name,
             link: inputs.link,
-        })
-        setInputs({})
-        setIsError({})
+        });
+        setInputs({});
+        setIsError({});
     }
 
     return (
@@ -101,7 +100,7 @@ function AddPlacePopup(props) {
                 {isError.link}
             </span>
         </PopupWithForm>
-    )
+    );
 }
 
-export default AddPlacePopup
+export default AddPlacePopup;

@@ -1,18 +1,17 @@
-import { useContext } from 'react'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import Card from './Card'
+import { useContext } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import Card from './Card';
 
-function Main(props) {
-    const user = useContext(CurrentUserContext)
-    const {
-        onEditAvatar,
-        onEditProfile,
-        onAddPlace,
-        cards,
-        onCardClick,
-        onCardLike,
-        onDeleteClick,
-    } = props
+function Main({
+    onEditAvatar,
+    onEditProfile,
+    onAddPlace,
+    cards,
+    onCardClick,
+    onCardLike,
+    onDeleteClick,
+}) {
+    const user = useContext(CurrentUserContext);
 
     return (
         <main className="content">
@@ -64,7 +63,7 @@ function Main(props) {
                 </ul>
             </section>
         </main>
-    )
+    );
 }
 
-export default Main
+export default Main;
