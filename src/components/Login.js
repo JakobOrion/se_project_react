@@ -29,7 +29,7 @@ function Login({ onLogin }) {
                             required
                         />
                     </label>
-                    <lable className="auth-form__input">
+                    <label className="auth-form__input">
                         <input
                             type="password"
                             name="password"
@@ -39,7 +39,7 @@ function Login({ onLogin }) {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                    </lable>
+                    </label>
                 </div>
                 <div className="auth-form__wrapper">
                     <button className="auth-form__button" type="submit">
