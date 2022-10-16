@@ -7,6 +7,7 @@
     Implemented two new routes for unauthorized users in a separate auth.js file:
 
     `/signup` _— for user registration_
+    
     `/signin` _— for user authorization_
 
     If an unauthorized user visits the application, they should be redirected to the login page, regardless of the route they accessed.
