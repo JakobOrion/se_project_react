@@ -3,13 +3,16 @@ import ErrorIcon from '../images/fail.svg';
 
 function InfoTooltip({ isOpen, onClose, status }) {
     return (
-        <div className={`popup ${isOpen && 'popup_opened'}`}>
-            <div className="popup__content">
+        <div
+            className={`popup popup_type_tooltip ${isOpen && 'popup_opened'}`}
+            onClick={onClose}
+        >
+            <div className="popup__container popup__container_tooltip">
                 <form className="popup__form" noValidate>
                     <button
                         type="button"
+                        aria-label="Close"
                         className="popup__close"
-                        onClick={onClose}
                     ></button>
                     {status === 'success' ? (
                         <div>

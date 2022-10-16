@@ -1,14 +1,15 @@
 .popup__close {
     position: absolute;
-    top: -45px;
-    right: -45px;
+    top: -40px;
+    right: -40px;
     background-image: url('../../../images/close.svg');
+    background-size: cover;
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
     border: 0;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     opacity: 1;
     transition: opacity 0.2s ease-in-out;
     cursor: pointer;
@@ -20,4 +21,12 @@
 
 .popup__close:focus {
     outline: none;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__close {
+        right: calc(50% - 16px);
+        width: 30px;
+        height: 30px;
+    }
 }

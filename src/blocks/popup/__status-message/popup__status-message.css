@@ -1,0 +1,16 @@
+.popup__status-message {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    color: #000;
+    margin-bottom: 0px;
+}
+
+@media screen and (max-width: 520px) {
+    .popup__status-message {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}

@@ -17,7 +17,7 @@ function Login({ onLogin }) {
         <div className="auth-form">
             <form className="auth-form__form" onSubmit={handleSubmit}>
                 <div className="auth-form__wrapper">
-                    <h3 className="auth-form__title">Lob in</h3>
+                    <h3 className="auth-form__title">Log in</h3>
                     <label className="auth-form__input">
                         <input
                             type="text"
@@ -43,7 +43,7 @@ function Login({ onLogin }) {
                 </div>
                 <div className="auth-form__wrapper">
                     <button className="auth-form__button" type="submit">
-                        Sign in
+                        Log in
                     </button>
                     <p className="auth-form__text">
                         Not a member yet?{' '}

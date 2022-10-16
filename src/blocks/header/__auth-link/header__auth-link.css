@@ -1,0 +1,27 @@
+.header__auth-link {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.header__auth-link:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 919px) {
+    .header__auth-link {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 636px) {
+    .header__auth-link {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

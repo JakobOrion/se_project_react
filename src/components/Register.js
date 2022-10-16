@@ -48,7 +48,7 @@ function Register({ onRegister }) {
                     <p className="auth-form__text">
                         Already a member?{' '}
                         <Link className="auth-form__link" to="/signin">
-                            Sign in here!
+                            Log in here!
                         </Link>
                     </p>
                 </div>

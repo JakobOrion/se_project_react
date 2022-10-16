@@ -64,6 +64,7 @@ function App() {
     }, []);
 
     function closeAllPopups() {
+        setIsInfoTooltipOpen(false);
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
@@ -239,6 +240,7 @@ function App() {
                                 onCardLike={handleCardLike}
                                 onDeleteClick={handleDeleteClick}
                             />
+                            <Footer />
                         </ProtectedRoute>
                         <Route path="/signup">
                             <Register onRegister={onRegister} />
@@ -254,7 +256,6 @@ function App() {
                             )}
                         </Route>
                     </Switch>
-                    <Footer />
                 </div>
 
                 <EditAvatarPopup
