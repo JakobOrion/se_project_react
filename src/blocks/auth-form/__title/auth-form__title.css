@@ -6,3 +6,10 @@
     color: #fff;
     margin-bottom: 40px;
 }
+
+@media screen and (max-width: 520px) {
+    .auth-form__title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}

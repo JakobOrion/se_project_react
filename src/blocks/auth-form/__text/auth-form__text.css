@@ -4,3 +4,11 @@
     line-height: 17px;
     color: #fff;
 }
+
+@media screen and (max-width: 520px) {
+    .auth-form__text {
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 20px;
+    }
+}
