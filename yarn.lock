@@ -10469,31 +10469,6 @@ eslint-config-airbnb@latest:
   languageName: node
   linkType: hard
 
-"react-around-auth@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-around-auth@workspace:."
-  dependencies:
-    "@testing-library/jest-dom": ^5.16.5
-    "@testing-library/react": ^13.4.0
-    "@testing-library/user-event": ^14.4.3
-    babel-eslint: ^10.1.0
-    eslint: ^7.32.0 || ^8.2.0
-    eslint-config-airbnb: latest
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-import: ^2.25.3
-    eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-react: ^7.28.0
-    eslint-plugin-react-hooks: ^4.3.0
-    gh-pages: ^4.0.0
-    prettier: 2.7.1
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-router-dom: ^5.3.4
-    react-scripts: ^5.0.1
-    web-vitals: ^3.0.3
-  languageName: unknown
-  linkType: soft
-
 "react-dev-utils@npm:^12.0.1":
   version: 12.0.1
   resolution: "react-dev-utils@npm:12.0.1"
@@ -11190,6 +11165,31 @@ eslint-config-airbnb@latest:
   checksum: c843e92fdd1a5c145dbb6ffdae33e501867f9703afac67bdf35a685e49f85b1dcc10ea250033175a64bd9d31f0555bc6785b8359da0c90bcea30cf6dfbb55a8f
   languageName: node
   linkType: hard
+
+"se_project_react@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "se_project_react@workspace:."
+  dependencies:
+    "@testing-library/jest-dom": ^5.16.5
+    "@testing-library/react": ^13.4.0
+    "@testing-library/user-event": ^14.4.3
+    babel-eslint: ^10.1.0
+    eslint: ^7.32.0 || ^8.2.0
+    eslint-config-airbnb: latest
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-import: ^2.25.3
+    eslint-plugin-jsx-a11y: ^6.5.1
+    eslint-plugin-react: ^7.28.0
+    eslint-plugin-react-hooks: ^4.3.0
+    gh-pages: ^4.0.0
+    prettier: 2.7.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-router-dom: ^5.3.4
+    react-scripts: ^5.0.1
+    web-vitals: ^3.0.3
+  languageName: unknown
+  linkType: soft
 
 "select-hose@npm:^2.0.0":
   version: 2.0.0
