@@ -1,17 +1,17 @@
 {
-    "name": "react-around-auth",
+    "name": "se_project_react",
     "version": "1.0.0",
     "description": "About the U.S. project on React, featuring authorization and registration.",
     "private": true,
-    "homepage": "https://jakoborion.github.io/react-around-auth/",
+    "homepage": "https://jakoborion.github.io/se_project_react/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/JakobOrion/react-around-auth.git"
+        "url": "git+https://github.com/JakobOrion/se_project_react.git"
     },
     "author": "Jakob Bohn",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/JakobOrion/react-around-auth/issues"
+        "url": "https://github.com/JakobOrion/se_project_react/issues"
     },
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",
