@@ -141,10 +141,10 @@ function App() {
             .finally(() => closeAllPopups());
     }
 
-    function handleUpdateAvatar(avatar) {
+    function handleUpdateAvatar({ avatar }) {
         setIsLoading(true);
 
-        api.setProfilePicture(avatar)
+        api.setProfilePicture({ avatar })
             .then((res) => {
                 setCurrentUser(res);
             })

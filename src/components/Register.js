@@ -25,6 +25,7 @@ function Register({ onRegister }) {
                             id="email"
                             className="auth-form__textfield"
                             placeholder="Email"
+                            autoComplete="username"
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
@@ -36,6 +37,7 @@ function Register({ onRegister }) {
                             id="password"
                             className="auth-form__textfield"
                             placeholder="Password"
+                            autoComplete="new-password"
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />

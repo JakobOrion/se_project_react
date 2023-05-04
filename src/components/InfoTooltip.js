@@ -8,7 +8,7 @@ function InfoTooltip({ isOpen, onClose, status }) {
             onClick={onClose}
         >
             <div className="popup__container popup__container_tooltip">
-                <form className="popup__form" noValidate>
+                <div className="popup__form" noValidate>
                     <button
                         type="button"
                         aria-label="Close"
@@ -37,7 +37,7 @@ function InfoTooltip({ isOpen, onClose, status }) {
                             </p>
                         </div>
                     )}
-                </form>
+                </div>
             </div>
         </div>
     );

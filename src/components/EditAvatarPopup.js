@@ -1,34 +1,26 @@
-import { useRef, useState } from 'react';
+import { useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
+import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
-    const userAvatarRef = useRef();
-    const [isError, setIsError] = useState({});
-    const [isValid, setIsValid] = useState(false);
+    const {
+        values,
+        handleChange,
+        handlePaste,
+        errors,
+        isValid,
+        setValues,
+        resetForm,
+    } = useFormAndValidation();
 
-    function checkIsFormValid() {
-        if (isError.avatar !== '' || userAvatarRef.current.value === '') {
-            setIsValid(false);
-        } else {
-            setIsValid(true);
-        }
-    }
-
-    function handleChange(e) {
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
-        checkIsFormValid();
-    }
-
-    function handlePaste(e) {
-        userAvatarRef.current.value = e.clipboardData.getData('text/plain');
-        handleChange(e);
-    }
+    useEffect(() => {
+        setValues({ avatar: '' });
+        resetForm();
+    }, [isOpen]);
 
     function handleAvatarSubmit(e) {
         e.preventDefault();
-        onUpdateAvatar(userAvatarRef.current.value);
-        userAvatarRef.current.value = '';
-        setIsError({});
+        onUpdateAvatar({ avatar: values.avatar });
     }
 
     return (
@@ -44,11 +36,10 @@ function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
             onUpdateAvatar={onUpdateAvatar}
         >
             <input
-                ref={userAvatarRef}
                 aria-label="Image URL"
                 type="url"
                 className={`form__input form__input_type_url ${
-                    isError.avatar && 'form__input_type_error'
+                    errors.avatar && 'form__input_type_error'
                 }`}
                 name="avatar"
                 onChange={handleChange}
@@ -59,11 +50,11 @@ function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
             />
             <span
                 className={`form__error ${
-                    isError.avatar && 'form__error_visible'
+                    errors.avatar && 'form__error_visible'
                 }`}
                 aria-live="polite"
             >
-                {isError.avatar}
+                {errors.avatar}
             </span>
         </PopupWithForm>
     );

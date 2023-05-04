@@ -1,46 +1,30 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import PopupWithForm from './PopupWithForm';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
     const user = useContext(CurrentUserContext);
-    const [inputs, setInputs] = useState({});
-    const [isError, setIsError] = useState({});
-    const [isValid, setIsValid] = useState(true);
+    const {
+        values,
+        handleChange,
+        handlePaste,
+        errors,
+        isValid,
+        setValues,
+        resetForm,
+    } = useFormAndValidation();
 
     useEffect(() => {
-        setInputs({ name: user.name, about: user.about });
-    }, [user]);
-
-    function checkIsFormValid() {
-        if (
-            isError.name !== '' ||
-            isError.about !== '' ||
-            inputs.name === '' ||
-            inputs.about === ''
-        ) {
-            setIsValid(false);
-        } else {
-            setIsValid(true);
-        }
-    }
-
-    function handleChange(e) {
-        setInputs({ ...inputs, [e.target.name]: e.target.value });
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
-        checkIsFormValid();
-    }
-
-    function handlePaste(e) {
-        e.target.value = e.clipboardData.getData('text/plain');
-        handleChange(e);
-    }
+        setValues({ name: user.name, about: user.about });
+        resetForm();
+    }, [user, isOpen]);
 
     function handleProfileSubmit(e) {
         e.preventDefault();
         onUpdateUser({
-            name: inputs.name,
-            about: inputs.about,
+            name: values.name,
+            about: values.about,
         });
     }
 
@@ -59,10 +43,10 @@ function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
                 aria-label="Name"
                 type="text"
                 className={`form__input form__input_type_name ${
-                    isError.name && 'form__input_type_error'
+                    errors.name && 'form__input_type_error'
                 }`}
                 name="name"
-                value={inputs.name || ''}
+                value={values.name || ''}
                 onChange={handleChange}
                 onPaste={handlePaste}
                 placeholder="Name"
@@ -73,21 +57,21 @@ function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
             />
             <span
                 className={`form__error ${
-                    isError.name && 'form__error_visible'
+                    errors.name && 'form__error_visible'
                 }`}
                 aria-live="polite"
             >
-                {isError.name}
+                {errors.name}
             </span>
 
             <input
                 aria-label="About me"
                 type="text"
                 className={`form__input form__input_type_description ${
-                    isError.about && 'form__input_type_error'
+                    errors.about && 'form__input_type_error'
                 }`}
                 name="about"
-                value={inputs.about || ''}
+                value={values.about || ''}
                 onChange={handleChange}
                 onPaste={handlePaste}
                 placeholder="About me"
@@ -98,11 +82,11 @@ function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
             />
             <span
                 className={`form__error ${
-                    isError.about && 'form__error_visible'
+                    errors.about && 'form__error_visible'
                 }`}
                 aria-live="polite"
             >
-                {isError.about}
+                {errors.about}
             </span>
         </PopupWithForm>
     );
