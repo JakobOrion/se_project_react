@@ -3,19 +3,11 @@ import PopupWithForm from './PopupWithForm';
 import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
-    const {
-        values,
-        handleChange,
-        handlePaste,
-        errors,
-        isValid,
-        setValues,
-        resetForm,
-    } = useFormAndValidation();
+    const { values, handleChange, handlePaste, errors, isValid, resetForm } =
+        useFormAndValidation();
 
     useEffect(() => {
-        setValues({ avatar: '' });
-        resetForm();
+        resetForm({ avatar: '' });
     }, [isOpen]);
 
     function handleAvatarSubmit(e) {
@@ -42,6 +34,7 @@ function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
                     errors.avatar && 'form__input_type_error'
                 }`}
                 name="avatar"
+                value={values.avatar || ''}
                 onChange={handleChange}
                 onPaste={handlePaste}
                 placeholder="Image link"

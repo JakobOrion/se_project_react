@@ -115,11 +115,7 @@ function App() {
             .then(() => {
                 const newCards = cardList.filter((c) => c._id !== card._id);
                 setCardList(newCards);
-            })
-            .then((res) => {
-                if (res) {
-                    closeAllPopups();
-                }
+                closeAllPopups();
             })
             .catch((err) => {
                 console.log(err);
@@ -132,9 +128,7 @@ function App() {
         api.setUserInfo({ name, about })
             .then((res) => {
                 setCurrentUser(res);
-                if (res) {
-                    closeAllPopups();
-                }
+                closeAllPopups();
             })
             .catch((err) => {
                 console.log(err);
@@ -147,9 +141,7 @@ function App() {
         api.setProfilePicture({ avatar })
             .then((res) => {
                 setCurrentUser(res);
-                if (res) {
-                    closeAllPopups();
-                }
+                closeAllPopups();
             })
             .catch((err) => {
                 console.log(err);
@@ -162,11 +154,7 @@ function App() {
         api.addCard({ name, link })
             .then((newCard) => {
                 setCardList([newCard, ...cardList]);
-            })
-            .then((res) => {
-                if (res) {
-                    closeAllPopups();
-                }
+                closeAllPopups();
             })
             .catch((err) => {
                 console.log(err);
@@ -183,11 +171,9 @@ function App() {
 
     function onRegister({ email, password }) {
         auth.register(email, password)
-            .then((res) => {
-                if (res) {
-                    setTooltipStatus('success');
-                    history.push('/signin');
-                }
+            .then(() => {
+                setTooltipStatus('success');
+                history.push('/signin');
             })
             .catch((err) => {
                 console.log(err);

@@ -3,19 +3,11 @@ import PopupWithForm from './PopupWithForm';
 import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
-    const {
-        values,
-        handleChange,
-        handlePaste,
-        errors,
-        isValid,
-        setValues,
-        resetForm,
-    } = useFormAndValidation();
+    const { values, handleChange, handlePaste, errors, isValid, resetForm } =
+        useFormAndValidation();
 
     useEffect(() => {
-        setValues({ name: '', link: '' });
-        resetForm();
+        resetForm({ name: '', link: '' });
     }, [isOpen]);
 
     function handleAddPlaceSubmit(e) {
