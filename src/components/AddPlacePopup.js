@@ -1,43 +1,29 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
+import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
-    const [inputs, setInputs] = useState({});
-    const [isError, setIsError] = useState({});
-    const [isValid, setIsValid] = useState(false);
+    const {
+        values,
+        handleChange,
+        handlePaste,
+        errors,
+        isValid,
+        setValues,
+        resetForm,
+    } = useFormAndValidation();
 
-    function checkIsFormValid() {
-        if (
-            isError.name !== '' ||
-            isError.link !== '' ||
-            inputs.name === '' ||
-            inputs.link === ''
-        ) {
-            setIsValid(false);
-        } else {
-            setIsValid(true);
-        }
-    }
-
-    function handleChange(e) {
-        setInputs({ ...inputs, [e.target.name]: e.target.value });
-        setIsError({ ...isError, [e.target.name]: e.target.validationMessage });
-        checkIsFormValid();
-    }
-
-    function handlePaste(e) {
-        e.target.value = e.clipboardData.getData('text/plain');
-        handleChange(e);
-    }
+    useEffect(() => {
+        setValues({ name: '', link: '' });
+        resetForm();
+    }, [isOpen]);
 
     function handleAddPlaceSubmit(e) {
         e.preventDefault();
         onAddPlace({
-            name: inputs.name,
-            link: inputs.link,
+            name: values.name,
+            link: values.link,
         });
-        setInputs({});
-        setIsError({});
     }
 
     return (
@@ -56,10 +42,10 @@ function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
                 aria-label="Title"
                 type="text"
                 className={`form__input form__input_type_card-title ${
-                    isError.name && 'form__input_type_error'
+                    errors.name && 'form__input_type_error'
                 }`}
                 name="name"
-                value={inputs.name || ''}
+                value={values.name || ''}
                 onChange={handleChange}
                 onPaste={handlePaste}
                 placeholder="Title"
@@ -70,21 +56,21 @@ function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
             />
             <span
                 className={`form__error ${
-                    isError.name && 'form__error_visible'
+                    errors.name && 'form__error_visible'
                 }`}
                 aria-live="polite"
             >
-                {isError.name}
+                {errors.name}
             </span>
 
             <input
                 aria-label="Image URL"
                 type="url"
                 className={`form__input form__input_type_url ${
-                    isError.link && 'form__input_type_error'
+                    errors.link && 'form__input_type_error'
                 }`}
                 name="link"
-                value={inputs.link || ''}
+                value={values.link || ''}
                 onChange={handleChange}
                 onPaste={handlePaste}
                 placeholder="Image link"
@@ -93,11 +79,11 @@ function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
             />
             <span
                 className={`form__error ${
-                    isError.link && 'form__error_visible'
+                    errors.link && 'form__error_visible'
                 }`}
                 aria-live="polite"
             >
-                {isError.link}
+                {errors.link}
             </span>
         </PopupWithForm>
     );

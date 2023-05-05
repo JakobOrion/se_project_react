@@ -16,7 +16,6 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
-import useKeyPress from '../hooks/useKeyPress';
 
 function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -32,7 +31,6 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [email, setEmail] = useState('');
     const [cardList, setCardList] = useState([]);
-    const isEscapePress = useKeyPress('Escape');
     const history = useHistory();
 
     useEffect(() => {
@@ -72,10 +70,6 @@ function App() {
         setIsImagePopupOpen(false);
         setIsLoading(false);
     }
-
-    useEffect(() => {
-        closeAllPopups();
-    }, [isEscapePress]);
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
@@ -122,10 +116,14 @@ function App() {
                 const newCards = cardList.filter((c) => c._id !== card._id);
                 setCardList(newCards);
             })
+            .then((res) => {
+                if (res) {
+                    closeAllPopups();
+                }
+            })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() => closeAllPopups());
+            });
     }
 
     function handleUpdateUser({ name, about }) {
@@ -134,11 +132,13 @@ function App() {
         api.setUserInfo({ name, about })
             .then((res) => {
                 setCurrentUser(res);
+                if (res) {
+                    closeAllPopups();
+                }
             })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() => closeAllPopups());
+            });
     }
 
     function handleUpdateAvatar({ avatar }) {
@@ -147,11 +147,13 @@ function App() {
         api.setProfilePicture({ avatar })
             .then((res) => {
                 setCurrentUser(res);
+                if (res) {
+                    closeAllPopups();
+                }
             })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() => closeAllPopups());
+            });
     }
 
     function handleAddNewPlace({ name, link }) {
@@ -161,10 +163,14 @@ function App() {
             .then((newCard) => {
                 setCardList([newCard, ...cardList]);
             })
+            .then((res) => {
+                if (res) {
+                    closeAllPopups();
+                }
+            })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() => closeAllPopups());
+            });
     }
 
     function handleClosePopups(e) {
@@ -180,16 +186,14 @@ function App() {
             .then((res) => {
                 if (res) {
                     setTooltipStatus('success');
-                    setIsInfoTooltipOpen(true);
                     history.push('/signin');
-                } else {
-                    setTooltipStatus('fail');
-                    setIsInfoTooltipOpen(true);
                 }
             })
             .catch((err) => {
                 console.log(err);
                 setTooltipStatus('fail');
+            })
+            .finally(() => {
                 setIsInfoTooltipOpen(true);
             });
     }
@@ -202,9 +206,6 @@ function App() {
                     setEmail(email);
                     localStorage.setItem('jwt', res.token);
                     history.push('/');
-                } else {
-                    setTooltipStatus('fail');
-                    setIsInfoTooltipOpen(true);
                 }
             })
             .catch((err) => {

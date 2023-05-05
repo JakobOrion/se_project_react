@@ -5,19 +5,11 @@ import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
     const user = useContext(CurrentUserContext);
-    const {
-        values,
-        handleChange,
-        handlePaste,
-        errors,
-        isValid,
-        setValues,
-        resetForm,
-    } = useFormAndValidation();
+    const { values, handleChange, handlePaste, errors, isValid, setValues } =
+        useFormAndValidation();
 
     useEffect(() => {
         setValues({ name: user.name, about: user.about });
-        resetForm();
     }, [user, isOpen]);
 
     function handleProfileSubmit(e) {
