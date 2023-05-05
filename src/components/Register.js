@@ -37,11 +37,11 @@ function Register({ onRegister }) {
                         />
                         <span
                             className={`form__error ${
-                                errors.name && 'form__error_visible'
+                                errors.email && 'form__error_visible'
                             }`}
                             aria-live="polite"
                         >
-                            {errors.name}
+                            {errors.email}
                         </span>
                     </label>
                     <label className="auth-form__input">
@@ -60,11 +60,11 @@ function Register({ onRegister }) {
                         />
                         <span
                             className={`form__error ${
-                                errors.name && 'form__error_visible'
+                                errors.password && 'form__error_visible'
                             }`}
                             aria-live="polite"
                         >
-                            {errors.name}
+                            {errors.password}
                         </span>
                     </label>
                 </div>

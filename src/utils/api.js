@@ -4,30 +4,31 @@ class Api {
         this._headers = headers;
     }
 
+    // check response status
+    // eslint-disable-next-line class-methods-use-this
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(new Error(`Error! ${res.statusText}`));
+    }
+
+    _request(url, options) {
+        return fetch(url, options).then(this._checkResponse);
+    }
+
     // load user info from server
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return this._request(`${this._baseUrl}/users/me`, {
             headers: this._headers,
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // load cards from server
     getCardList() {
-        return fetch(`${this._baseUrl}/cards`, {
+        return this._request(`${this._baseUrl}/cards`, {
             headers: this._headers,
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // Wait for the getCardList and getUserInfo before rendering
@@ -37,80 +38,50 @@ class Api {
 
     // edit profile
     setUserInfo({ name, about }) {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return this._request(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 name,
                 about,
             }),
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // add new card
     addCard({ name, link }) {
-        return fetch(`${this._baseUrl}/cards`, {
+        return this._request(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
                 name,
                 link,
             }),
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // delete a card
     removeCard(cardID) {
-        return fetch(`${this._baseUrl}/cards/${cardID}`, {
+        return this._request(`${this._baseUrl}/cards/${cardID}`, {
             method: 'DELETE',
             headers: this._headers,
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // add like
     addLike(cardID) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+        return this._request(`${this._baseUrl}/cards/likes/${cardID}`, {
             method: 'PUT',
             headers: this._headers,
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     // remove like
     removeLike(cardID) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+        return this._request(`${this._baseUrl}/cards/likes/${cardID}`, {
             method: 'DELETE',
             headers: this._headers,
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 
     changeLikeCardStatus(cardID, isLiked) {
@@ -119,19 +90,13 @@ class Api {
 
     // update profile pic
     setProfilePicture({ avatar }) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
+        return this._request(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar,
             }),
-        })
-            .then((res) =>
-                res.ok
-                    ? res.json()
-                    : Promise.reject(new Error(`Error! ${res.statusText}`))
-            )
-            .catch((err) => console.log(err));
+        });
     }
 }
 
