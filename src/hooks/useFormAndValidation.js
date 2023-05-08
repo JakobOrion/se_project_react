@@ -13,6 +13,7 @@ export default function useFormAndValidation() {
     };
 
     function handlePaste(e) {
+        e.preventDefault();
         e.target.value = e.clipboardData.getData('text/plain');
         handleChange(e);
     }
